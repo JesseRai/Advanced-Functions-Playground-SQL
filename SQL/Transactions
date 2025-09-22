@@ -1,3 +1,6 @@
+ACC_BALANCE TRANSACTION 
+==============================================
+
 CREATE TABLE acc_balance (
 	id SERIAL PRIMARY KEY,
 	first_name TEXT NOT NULL,
@@ -20,3 +23,24 @@ UPDATE acc_balance
 SET amount = amount+100
 WHERE id = 2;
 COMMIT;
+
+EMPLOYEE TRANSACTION
+==============================================
+
+SELECT * FROM employees
+ORDER BY salary DESC;
+
+BEGIN;  
+UPDATE employees
+SET position_title = 'Head of Bi'
+WHERE first_name = 'Morrie' AND last_name = 'Conaboy';
+UPDATE employees
+SET position_title = 'CTO'
+WHERE first_name = 'Miller' AND last_name = 'McQuarter';
+UPDATE employees
+SET salary = 14614.00
+WHERE first_name = 'Morrie' AND last_name = 'Conaboy';
+UPDATE employees
+SET salary = 21268.94
+WHERE first_name = 'Miller' AND last_name = 'McQuarter';
+COMMIT; 
