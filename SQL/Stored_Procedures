@@ -1,0 +1,18 @@
+CREATE OR REPLACE PROCEDURE sp_transfer(tr_amount INT, sender INT, recipient INT)
+	LANGUAGE plpgsql
+AS
+$$
+BEGIN
+UPDATE acc_balance
+SET amount = amount - tr_amount
+WHERE id = sender;
+UPDATE acc_balance
+SET amount = amount + tr_amount
+WHERE id = recipient;
+COMMIT;
+END;
+$$
+
+CALL sp_transfer(200, 2, 1);
+
+select * from acc_balance;
